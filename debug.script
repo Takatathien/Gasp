@@ -1,0 +1,89 @@
+Script started on Wed 01 May 2019 06:09:14 PM PDT
+]777;notify;Command completed;exit]0;trinht2@localhost:~/hw4]7;file://localhost.localdomain/home/trinht2/hw4[?1034h[trinht2@localhost hw4]$ d[Kgdb gasp
+[?1034hGNU gdb (GDB) Red Hat Enterprise Linux 8.0.1-36.el7
+Copyright (C) 2017 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from gasp...done.
+(gdb) b main[K[K[K[K[Kreak main
+Breakpoint 1 at 0x400826: file gasp.c, line 21.
+(gdb) break 47[K+[K6
+Breakpoint 2 at 0x400998: file gasp.c, line 46.
+(gdb) run gasp master[K[K[K[K[K[K-i -n master test2.txt
+Starting program: /home/trinht2/hw4/gasp gasp -i -n master test2.txt
+Missing separate debuginfos, use: debuginfo-install glibc-2.17-260.el7.x86_64
+
+Breakpoint 1, main (argc=6, argv=0x7fffffffdbb8) at gasp.c:21
+21	  if (argc < 3) {
+(gdb) print argv[4]
+$1 = 0x7fffffffdf58 "master"
+(gdb) r[Kc
+Continuing.
+
+Breakpoint 2, grep (argv=0x7fffffffdbb8, input=2) at gasp.c:46
+46	  if (file == NULL) {
+(gdb) bt
+#0  grep (argv=0x7fffffffdbb8, input=2) at gasp.c:46
+#1  0x000000000040093f in main (argc=6, argv=0x7fffffffdbb8)
+    at gasp.c:38
+(gdb) list 46
+41	  return 0;
+42	}
+43	
+44	int grep(char *argv[], int input) {
+45	  FILE *file = fopen(argv[input], "r");
+46	  if (file == NULL) {
+47	    fprintf(stderr, "Does not exist: %s\n", argv[input]);
+48	    return 1;
+49	  }
+50	  
+(gdb) print argv[5][K[Kino[Kput]
+$2 = 0x7fffffffdf52 "-i"
+(gdb) print ino[Kput
+$3 = 2
+(gdb) argv [[K[K[i[K5]
+Undefined command: "argv".  Try "help".
+(gdb) print argv[5]
+$4 = 0x7fffffffdf5f "test2.txt"
+(gdb) print argv[K[K[K[K[K file
+$5 = (FILE *) 0x0
+(gdb) print *file
+Cannot access memory at address 0x0
+(gdb) print &file
+$6 = (FILE **) 0x7fffffffda88
+(gdb) con[K[K
+Continuing.
+Does not exist: -i
+
+Breakpoint 2, grep (argv=0x7fffffffdbb8, input=3) at gasp.c:46
+46	  if (file == NULL) {
+(gdb) c
+Continuing.
+Does not exist: -n
+
+Breakpoint 2, grep (argv=0x7fffffffdbb8, input=4) at gasp.c:46
+46	  if (file == NULL) {
+(gdb) c
+Continuing.
+Does not exist: master
+
+Breakpoint 2, grep (argv=0x7fffffffdbb8, input=5) at gasp.c:46
+46	  if (file == NULL) {
+(gdb) c
+Continuing.
+[Inferior 1 (process 13681) exited normally]
+(gdb) exit[K[K[K[Kquit
+]777;notify;Command completed;gdb gasp]0;trinht2@localhost:~/hw4]7;file://localhost.localdomain/home/trinht2/hw4[trinht2@localhost hw4]$ exit
+exit
+
+Script done on Wed 01 May 2019 06:17:48 PM PDT
